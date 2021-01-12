@@ -5,29 +5,34 @@ import {
   StyleSheet,
   TouchableOpacity,
   Text,
+  Modal,
+  Button,
 } from "react-native";
 
-const AddGoal = ({ addGoal, handleGoal, goalText }) => {
+const AddGoal = ({ addGoal, handleGoal, goalText, isVisible }) => {
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.inputStyle}
-        placeholder="Add Goal"
-        onChangeText={addGoal}
-        value={goalText}
-      />
+    <Modal visible={isVisible} animationType="slide">
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.inputStyle}
+          placeholder="Add Goal"
+          onChangeText={addGoal}
+          value={goalText}
+        />
 
-      <TouchableOpacity style={styles.buttonStyle} onPress={handleGoal}>
-        <Text style={{ color: "white" }}>ADD</Text>
-      </TouchableOpacity>
-    </View>
+        <TouchableOpacity style={styles.buttonStyle} onPress={handleGoal}>
+          <Text style={{ color: "white" }}>ADD</Text>
+        </TouchableOpacity>
+      </View>
+    </Modal>
   );
 };
 const styles = StyleSheet.create({
   inputContainer: {
+    flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
   },
   inputStyle: {
     borderRadius: 8,

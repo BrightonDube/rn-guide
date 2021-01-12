@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, View, FlatList, Button } from "react-native";
 import Goal from "./src/Components/Goal";
 import AddGoal from "./src/Components/AddGoal";
 
@@ -17,6 +17,7 @@ export default function App() {
       { id: Math.floor(Math.random() * 10 ** 5), title: goal },
     ]);
     setGoal("");
+    setVisibility(false);
   };
   const typeGoalHandler = (text) => {
     setGoal(text);
@@ -27,14 +28,21 @@ export default function App() {
       return currentGoals.filter((item) => item.id !== id);
     });
   };
-
+  //Modal visibility
+  const [visibility, setVisibility] = useState(false);
   return (
     <View style={styles.container}>
       <>
+        <Button
+          title="Add New Goal"
+          onPress={() => setVisibility(true)}
+          color="#3A7A82"
+        />
         <AddGoal
           goalText={goal}
           handleGoal={addGoalHandler}
           addGoal={typeGoalHandler}
+          isVisible={visibility}
         />
 
         <FlatList
