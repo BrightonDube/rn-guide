@@ -6,10 +6,9 @@ import {
   TouchableOpacity,
   Text,
   Modal,
-  Button,
 } from "react-native";
 
-const AddGoal = ({ addGoal, handleGoal, goalText, isVisible }) => {
+const AddGoal = ({ addGoal, onCancel, handleGoal, goalText, isVisible }) => {
   return (
     <Modal visible={isVisible} animationType="slide">
       <View style={styles.inputContainer}>
@@ -19,10 +18,20 @@ const AddGoal = ({ addGoal, handleGoal, goalText, isVisible }) => {
           onChangeText={addGoal}
           value={goalText}
         />
-
-        <TouchableOpacity style={styles.buttonStyle} onPress={handleGoal}>
-          <Text style={{ color: "white" }}>ADD</Text>
-        </TouchableOpacity>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            width: "80%",
+          }}
+        >
+          <TouchableOpacity style={styles.buttonStyle} onPress={onCancel}>
+            <Text style={{ color: "hotpink" }}>CANCEL</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonStyle} onPress={handleGoal}>
+            <Text style={{ color: "white" }}>ADD</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </Modal>
   );
@@ -30,7 +39,7 @@ const AddGoal = ({ addGoal, handleGoal, goalText, isVisible }) => {
 const styles = StyleSheet.create({
   inputContainer: {
     flex: 1,
-    flexDirection: "row",
+
     alignItems: "center",
     justifyContent: "center",
   },
@@ -50,8 +59,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     backgroundColor: "#3A7A82",
     justifyContent: "center",
-    width: "14%",
+    width: "40%",
     alignItems: "center",
+    marginHorizontal: 5,
   },
 });
 export default AddGoal;

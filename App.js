@@ -11,6 +11,9 @@ export default function App() {
       title: "Learn React Native by February 2021",
     },
   ]);
+  //Modal visibility
+  const [visibility, setVisibility] = useState(false);
+
   const addGoalHandler = () => {
     setGoals([
       ...goals,
@@ -23,13 +26,16 @@ export default function App() {
     setGoal(text);
   };
 
+  const cancelHandler = () => {
+    setVisibility(false);
+  };
+
   const deleteGoals = (id) => {
     setGoals((currentGoals) => {
       return currentGoals.filter((item) => item.id !== id);
     });
   };
-  //Modal visibility
-  const [visibility, setVisibility] = useState(false);
+
   return (
     <View style={styles.container}>
       <>
@@ -42,6 +48,7 @@ export default function App() {
           goalText={goal}
           handleGoal={addGoalHandler}
           addGoal={typeGoalHandler}
+          onCancel={cancelHandler}
           isVisible={visibility}
         />
 
